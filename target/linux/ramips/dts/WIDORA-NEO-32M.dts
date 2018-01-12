@@ -10,7 +10,7 @@
 	model = "Widora-NEO-32M";
 
 	chosen {
-		bootargs = "console=ttyS0,115200";
+		bootargs = "console=ttyS0,115200 spidev.bufsiz=65536";
 	};
 
 	memory@0 {
