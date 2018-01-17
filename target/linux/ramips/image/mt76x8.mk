@@ -206,7 +206,7 @@ define Device/widora-neo-16M
   DTS := WIDORA-NEO-16M
   IMAGE_SIZE := $(ralink_default_fw_size_16M)
   DEVICE_TITLE := Widora-NEO-16M
-  SUPPORTED_DEVICES := widora-neo widora
+  SUPPORTED_DEVICES += widora-neo
   DEVICE_PACKAGES := kmod-usb2 kmod-usb-ohci
 endef
 TARGET_DEVICES += widora-neo-16M
@@ -215,7 +215,7 @@ define Device/widora-neo-32M
   DTS := WIDORA-NEO-32M
   IMAGE_SIZE := $(ralink_default_fw_size_32M)
   DEVICE_TITLE := Widora-NEO-32M
-  SUPPORTED_DEVICES := widora-neo widora widora32m
+  SUPPORTED_DEVICES += widora-neo
   DEVICE_PACKAGES := kmod-usb2 kmod-usb-ohci
 endef
 TARGET_DEVICES += widora-neo-32M
