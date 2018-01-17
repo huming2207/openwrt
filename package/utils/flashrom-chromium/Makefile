@@ -7,7 +7,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=flashrom
+PKG_NAME:=flashrom-chromium
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=6366f909e5ca55801550427e811e3d7b06c4202a
@@ -23,7 +23,7 @@ PKG_LICENSE_FILES:=COPYING
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
-include flashrom.mk
+include flashrom-chromium.mk
 
 TARGET_CFLAGS+= \
 	-std=gnu89
@@ -31,15 +31,15 @@ TARGET_CFLAGS+= \
 MAKE_FLAGS+= \
 	PREFIX="/usr"
 
-define Package/flashrom/default
+define Package/flashrom-chromium/default
   SECTION:=utils
   CATEGORY:=Utilities
-  TITLE:=FlashROM Utility
+  TITLE:=FlashROM Utility (with ChromiumOS mods)
   URL:=http://www.flashrom.org/
 endef
 
-define Package/flashrom
-  $(Package/flashrom/default)
+define Package/flashrom-chromium
+  $(Package/flashrom-chromium/default)
   TITLE+= (full)
   DEPENDS+= \
     +(TARGET_x86||TARGET_x86_64):dmidecode \
@@ -51,8 +51,8 @@ define Package/flashrom
   DEFAULT_VARIANT:=1
 endef
 
-define Package/flashrom-pci
-  $(Package/flashrom/default)
+define Package/flashrom-chromium-pci
+  $(Package/flashrom-chromium/default)
   TITLE+= (pci)
   DEPENDS+= \
     +(TARGET_x86||TARGET_x86_64):dmidecode \
@@ -60,14 +60,14 @@ define Package/flashrom-pci
   VARIANT:=pci
 endef
 
-define Package/flashrom-spi
-  $(Package/flashrom/default)
+define Package/flashrom-chromium-spi
+  $(Package/flashrom-chromium/default)
   TITLE+= (spi)
   VARIANT:=spi
 endef
 
-define Package/flashrom-usb
-  $(Package/flashrom/default)
+define Package/flashrom-chromium-usb
+  $(Package/flashrom-chromium/default)
   TITLE+= (usb)
   DEPENDS+= \
     +libftdi1 \
@@ -76,34 +76,34 @@ define Package/flashrom-usb
   VARIANT:=usb
 endef
 
-define Package/flashrom/default/description
+define Package/flashrom-chromium/default/description
  flashrom is an utility for identifying, reading, writing, verifying
  and erasing flash chips. It's often used to flash BIOS/EFI/coreboot
  /firmware images.
 endef
-Package/flashrom/description = $(Package/flashrom/default/description)
-Package/flashrom-pci/description = $(Package/flashrom/default/description)
-Package/flashrom-spi/description = $(Package/flashrom/default/description)
-Package/flashrom-usb/description = $(Package/flashrom/default/description)
+Package/flashrom-chromium/description = $(Package/flashrom-chromium/default/description)
+Package/flashrom-chromium-pci/description = $(Package/flashrom-chromium/default/description)
+Package/flashrom-chromium-spi/description = $(Package/flashrom-chromium/default/description)
+Package/flashrom-chromium-usb/description = $(Package/flashrom-chromium/default/description)
 
-define Package/flashrom/install
+define Package/flashrom-chromium/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/flashrom $(1)/usr/sbin/flashrom
 endef
-define Package/flashrom-pci/install
+define Package/flashrom-chromium-pci/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/flashrom $(1)/usr/sbin/flashrom-pci
 endef
-define Package/flashrom-spi/install
+define Package/flashrom-chromium-spi/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/flashrom $(1)/usr/sbin/flashrom-spi
 endef
-define Package/flashrom-usb/install
+define Package/flashrom-chromium-usb/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/flashrom $(1)/usr/sbin/flashrom-usb
 endef
 
-$(eval $(call BuildPackage,flashrom))
-$(eval $(call BuildPackage,flashrom-pci))
-$(eval $(call BuildPackage,flashrom-spi))
-$(eval $(call BuildPackage,flashrom-usb))
+$(eval $(call BuildPackage,flashrom-chromium))
+$(eval $(call BuildPackage,flashrom-chromium-pci))
+$(eval $(call BuildPackage,flashrom-chromium-spi))
+$(eval $(call BuildPackage,flashrom-chromium-usb))
